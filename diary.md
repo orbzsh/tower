@@ -1,19 +1,21 @@
-------
 ####open-falcon
+---
+
+
 ######安装部署
 -	[参考文档](http://book.open-falcon.com/zh/intro/README.html)
 
 
-------
 ####GoChair
+---
 
 
-------
 ####GoDNS
+---
 
 
-------
 ####go 项目
+---
 -	[etcd的博客](http://daizuozhuo.github.io/)
 -	[etcd-service-discovery](https://github.com/daizuozhuo/etcd-service-discovery)
 -	[go-fsnotify/fsnotify](https://github.com/go-fsnotify/fsnotify/blob/master/example_test.go)
@@ -35,8 +37,9 @@
 -	[Wrapper around Upstart to manage configurations](https://github.com/apourchet/tasker)
 -	[go code torial](https://github.com/taysom/va)
 
-------
+
 ####go dns相关
+---
 -	[go dns](https://github.com/yinqiwen/godns/blob/master/dnsclient.go)
 -	[go goHttpDns](https://github.com/zheng-ji/goHttpDns/blob/master/src/logic/dns.go)
 -	[A fast dns cache server written by go](https://github.com/kenshinx/godns)
@@ -44,15 +47,17 @@
 -	[A command-line tool for getting a domain's IPs](https://github.com/m3ng9i/IP-resolver)
 -	[Go DNS example programs](https://github.com/miekg/exdns)
 
-------
+
 ####python相关
+---
 -	[OpenSource IT Automation Software](https://github.com/triaquae/CrazyEye)
 -	[wenph2008的专栏](http://blog.csdn.net/wenph2008/article/category/1540209)
 -	[Python 实现并行化 -- 日常多线程操作的新思路](http://segmentfault.com/a/1190000000414339?utm_source=Weibo&utm_medium=shareLink&utm_campaign=socialShare)
 -	[python中使用static、class、abstract方法](http://python.jobbole.com/81595/)
 
-------
+
 ####博客
+---
 -	[用GitLab搭建自己的私有GitHub](http://segmentfault.com/a/1190000000345686)
 -	[谢权 go blog](http://xiequan.info/tag/go/)
 -	[shanks blog](http://shanks.leanote.com/)
@@ -71,8 +76,9 @@
 -	[mfs分布式存储+master端高可用](http://my.oschina.net/loveleaf/blog/486699)
 -	[常去的网站](http://zhuanlan.zhihu.com/netxfly/20075898)
 
-------
+
 ####percona
+---
 -	[Percona XtraBackup的使用和备份原理图解](http://chuansong.me/n/135129)
 -	[使用Percona XtraBackup热备搭建slave数据库](http://ruiaylin.github.io/2014/05/13/XtraBackup-slave/)
 -	[xtrabackup 备份原理](http://www.sxrczx.com/pages/ruiaylin.github.io/2014/05/22/xtrabackup/index_1417511191681.html)
@@ -81,14 +87,16 @@
 -	[为什么要关闭query cache，如何关闭](http://imysql.com/2015/03/27/mysql-faq-why-should-we-disable-query-cache.shtml)
 -	[XtraBackup不停机不锁表搭建MySQL主从同步实践](http://wsgzao.github.io/post/xtrabackup/)
 
-------
+
 ####监控相关
+---
 -	[Monit is a utility for managing and monitoring](https://mmonit.com/monit/documentation/monit.html#NAME)
 -	[简洁而不简单的监控系统simpleMon](https://github.com/51reboot/simpleMon)
 -	[alerta.io](http://alerta.io/)
 
-------
+
 ####文档
+---
 -	[Sublime Text 3 文档](http://feliving.github.io/Sublime-Text-3-Documentation/)
 -	[openstack中文文档](http://docs.ocselected.org/openstack-manuals/kilo/install/rpm/content/ch_preface.html)
 -	[Heka getting start](http://hekad.readthedocs.org/en/v0.10.0b1/getting_started.html)
