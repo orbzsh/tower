@@ -1,3 +1,6 @@
+/*
+首页：index的controller
+*/
 package controllers
 
 import (

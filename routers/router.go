@@ -1,3 +1,6 @@
+/*
+定义路由
+*/
 package routers
 
 import (
