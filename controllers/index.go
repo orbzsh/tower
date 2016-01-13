@@ -18,5 +18,6 @@ func (self *IndexController) Get() {
 	// beego.SetLevel(beego.LevelInformational)
 	// beego.Trace("trace index")
 	// beego.Info("trace info")
+	self.Data["IsIndex"] = true
 	self.TplNames = "index.html"
 }
