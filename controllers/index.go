@@ -5,6 +5,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"goblog/models"
 )
 
 type IndexController struct {
@@ -20,4 +21,10 @@ func (self *IndexController) Get() {
 	// beego.Info("trace info")
 	self.Data["IsIndex"] = true
 	self.TplNames = "index.html"
+	topics, err := models.GetAllTopics(true)
+	if err != nil {
+		beego.Error(err)
+	} else {
+		self.Data["Topics"] = topics
+	}
 }
