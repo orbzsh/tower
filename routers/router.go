@@ -18,4 +18,5 @@ func init() {
 	beego.Router("/topic", &controllers.TopicController{})
 	beego.AutoRouter(&controllers.TopicController{})
 	beego.SetStaticPath("/data", "data")
+	// beego.Router("/data/:all", &controllers.AttachController{})
 }
