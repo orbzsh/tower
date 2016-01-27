@@ -16,6 +16,18 @@ func AddTopic(title, category, content string) error {
 		Updated:  time.Now(),
 	}
 	_, err := o.Insert(topic)
+	if err != nil {
+		return err
+	}
+	//更新分类
+	cate := new(Category)
+	qs := o.QueryTable("category")
+	err = qs.Filter("title", category).One(cate)
+	if err == nil {
+		//如果不存在，忽略更新操作
+		cate.TopicCount++
+		_, err = o.Update(cate)
+	}
 	return err
 }
 
@@ -57,14 +69,37 @@ func ModifyTopic(tid, title, category, content string) error {
 	if err != nil {
 		return err
 	}
+	var oldCate string
 	o := orm.NewOrm()
 	topic := &Topic{Id: tidNum}
 	if o.Read(topic) == nil {
+		oldCate = topic.Category
 		topic.Title = title
 		topic.Category = category
 		topic.Content = content
 		topic.Updated = time.Now()
-		o.Update(topic)
+		_, err = o.Update(topic)
+		if err != nil {
+			return err
+		}
+	}
+	//更新旧的分类统计
+	if len(oldCate) > 0 {
+		cate := new(Category)
+		qs := o.QueryTable("category")
+		err := qs.Filter("title", oldCate).One(cate)
+		if err == nil {
+			cate.TopicCount--
+			_, err = o.Update(cate)
+		}
+	}
+	//更新新的分类统计
+	cate := new(Category)
+	qs := o.QueryTable("category")
+	err = qs.Filter("title", category).One(cate)
+	if err == nil {
+		cate.TopicCount++
+		_, err = o.Update(cate)
 	}
 	return nil
 }
@@ -74,8 +109,24 @@ func DeleteTopic(tid string) error {
 	if err != nil {
 		return err
 	}
+	var oldCate string
 	o := orm.NewOrm()
 	topic := &Topic{Id: tidNum}
-	_, err = o.Delete(topic)
+	if o.Read(topic) == nil {
+		oldCate = topic.Category
+		_, err = o.Delete(topic)
+		if err != nil {
+			return err
+		}
+	}
+	if len(oldCate) > 0 {
+		cate := new(Category)
+		qs := o.QueryTable("category")
+		err = qs.Filter("title", oldCate).One(cate)
+		if err == nil {
+			cate.TopicCount--
+			_, err = o.Update(cate)
+		}
+	}
 	return err
 }
