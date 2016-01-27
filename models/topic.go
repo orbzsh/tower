@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/astaxie/beego/orm"
 	"strconv"
+	"time"
 )
 
 func AddTopic(title, content string) error {
