@@ -12,7 +12,7 @@ type TopicController struct {
 func (self *TopicController) Get() {
 	self.Data["IsTopic"] = true
 	self.TplNames = "topic.html"
-	topics, err := models.GetAllTopics(false)
+	topics, err := models.GetAllTopics("", false)
 	if err != nil {
 		beego.Error(err)
 	} else {
@@ -21,14 +21,16 @@ func (self *TopicController) Get() {
 }
 
 func (self *TopicController) Post() {
+	tid := self.Input().Get("tid")
 	title := self.Input().Get("title")
 	content := self.Input().Get("content")
-	tid := self.Input().Get("tid")
+	category := self.Input().Get("category")
+
 	var err error
 	if len(tid) == 0 {
-		err = models.AddTopic(title, content)
+		err = models.AddTopic(title, category, content)
 	} else {
-		err = models.ModifyTopic(tid, title, content)
+		err = models.ModifyTopic(tid, title, category, content)
 	}
 	if err != nil {
 		beego.Error(err)
@@ -50,6 +52,13 @@ func (self *TopicController) View() {
 	}
 	self.Data["Topic"] = topic
 	self.Data["Tid"] = self.Ctx.Input.Param("0")
+	replies, err := models.GetAllReply(self.Ctx.Input.Param("0"))
+	if err != nil {
+		beego.Error(err)
+		return
+	}
+	self.Data["Replies"] = replies
+
 }
 
 func (self *TopicController) Modify() {

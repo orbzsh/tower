@@ -28,6 +28,7 @@ type Topic struct {
 	Id              int64
 	Uid             int64
 	Title           string
+	Category        string
 	Content         string `orm:"size(5000)"`
 	Attachment      string
 	Created         time.Time `orm:"index"`
@@ -39,12 +40,20 @@ type Topic struct {
 	ReplyLastUserId int64
 }
 
+type Comment struct {
+	Id      int64
+	Tid     int64
+	Name    string
+	Content string    `orm:"size(1000)"`
+	Created time.Time `orm:"index"`
+}
+
 func RegisterDB() {
 	if !com.IsExist(_DB_NAME) {
 		os.MkdirAll(path.Dir(_DB_NAME), os.ModePerm)
 		os.Create(_DB_NAME)
 	}
-	orm.RegisterModel(new(Category), new(Topic))
+	orm.RegisterModel(new(Category), new(Topic), new(Comment))
 	orm.RegisterDriver(_SQLITE3_DRIVER, orm.DR_Sqlite)
 	orm.RegisterDataBase("default", _SQLITE3_DRIVER, _DB_NAME, 10)
 }

@@ -21,10 +21,15 @@ func (self *IndexController) Get() {
 	// beego.Info("trace info")
 	self.Data["IsIndex"] = true
 	self.TplNames = "index.html"
-	topics, err := models.GetAllTopics(true)
+	topics, err := models.GetAllTopics(self.Input().Get("cate"), true)
 	if err != nil {
 		beego.Error(err)
 	} else {
 		self.Data["Topics"] = topics
 	}
+	categories, err := models.GetAllCategory()
+	if err != nil {
+		beego.Error(err)
+	}
+	self.Data["Categories"] = categories
 }
