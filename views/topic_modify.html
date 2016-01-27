@@ -10,7 +10,7 @@
 		</div>
 		<div class="container">
 			<h1>修改文章</h1>
-			<form action="post" action="/topic">
+			<form method="post" action="/topic" enctype="multipart/form-data">
 				<input type="hidden" name="tid" value="{{.Tid}}">
 				<div class="form-group">
 					<label>文章标题</label>
@@ -20,6 +20,11 @@
 				<div class="form-group">
 					<label>文章分类</label>
 					<input type="text" name="category" class="form-control" value={{.Topic.Category}}>
+				</div>
+
+				<div class="form-group">
+					<label>文章附件(<a href="/data/{{.Topic.Attachment}}">{{.Topic.Attachment}}</a>)</label>
+					<input type="file" name="attachment" class="form-control">
 				</div>
 
 				<div class="form-group">

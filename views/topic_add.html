@@ -10,7 +10,7 @@
 		</div>
 		<div class="container">
 			<h1>添加文章</h1>
-			<form action="post" action="/topic">
+			<form enctype="multipart/form-data" method="post" action="/topic">
 				<div class="form-group">
 					<label>文章标题</label>
 					<input type="text" name="title" class="form-control">
@@ -19,6 +19,11 @@
 				<div class="form-group">
 					<label>文章分类</label>
 					<input type="text" name="category" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label>文章附件</label>
+					<input type="file" name="attachment" class="form-control">
 				</div>
 
 				<div class="form-group">

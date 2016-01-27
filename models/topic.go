@@ -2,18 +2,21 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"os"
+	"path"
 	"strconv"
 	"time"
 )
 
-func AddTopic(title, category, content string) error {
+func AddTopic(title, category, content, attachment string) error {
 	o := orm.NewOrm()
 	topic := &Topic{
-		Title:    title,
-		Category: category,
-		Content:  content,
-		Created:  time.Now(),
-		Updated:  time.Now(),
+		Title:      title,
+		Category:   category,
+		Content:    content,
+		Attachment: attachment,
+		Created:    time.Now(),
+		Updated:    time.Now(),
 	}
 	_, err := o.Insert(topic)
 	if err != nil {
@@ -64,19 +67,21 @@ func GetTopic(tid string) (*Topic, error) {
 	return topic, err
 }
 
-func ModifyTopic(tid, title, category, content string) error {
+func ModifyTopic(tid, title, category, content, attachment string) error {
 	tidNum, err := strconv.ParseInt(tid, 10, 64)
 	if err != nil {
 		return err
 	}
-	var oldCate string
+	var oldCate, oldAttachment string
 	o := orm.NewOrm()
 	topic := &Topic{Id: tidNum}
 	if o.Read(topic) == nil {
 		oldCate = topic.Category
+		oldAttachment = topic.Attachment
 		topic.Title = title
 		topic.Category = category
 		topic.Content = content
+		topic.Attachment = attachment
 		topic.Updated = time.Now()
 		_, err = o.Update(topic)
 		if err != nil {
@@ -93,6 +98,12 @@ func ModifyTopic(tid, title, category, content string) error {
 			_, err = o.Update(cate)
 		}
 	}
+
+	//删除旧的附件
+	if len(oldAttachment) > 0 {
+		os.Remove(path.Join("data", oldAttachment))
+	}
+
 	//更新新的分类统计
 	cate := new(Category)
 	qs := o.QueryTable("category")
