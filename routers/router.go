@@ -20,4 +20,5 @@ func init() {
 	// beego.SetStaticPath("/data", "data")
 	// // beego.Router("/data/:all", &controllers.AttachController{})
 	beego.Router("/", &controllers.IndexChairController{})
+	beego.Router("/hdns", &controllers.HttpdnsController{})
 }

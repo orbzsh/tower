@@ -10,5 +10,5 @@ type IndexChairController struct {
 
 func (self *IndexChairController) Get() {
 	self.Data["IsIndex"] = true
-	self.TplNames = "indexchair.html"
+	self.TplNames = "goindex.html"
 }
